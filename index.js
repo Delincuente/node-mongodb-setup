@@ -3,6 +3,9 @@ dotenv.config({ quiet: true });
 import express from "express";
 
 import route from "./routes/index.route.js";
+import connectDB from "./config/db.config.js";
+
+await connectDB();
 
 const port = process.env.port;
 const app = express();
