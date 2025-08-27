@@ -10,9 +10,13 @@ export async function createUser(req, res, next) {
     }
 }
 
-function userController(req, res) {
-    console.log('inputs:', req.body);
-    res.send("Welcome user...");
+export async function getUsers(req, res) {
+    try {
+        const users = await User.find();
+        res.status(200).json(users);
+    } catch (error) {
+        next(error);
+    }
 }
 
 function details(req, res, next) {
@@ -28,6 +32,5 @@ function details(req, res, next) {
 }
 
 export default {
-    userController: userController,
     details: details
 }
