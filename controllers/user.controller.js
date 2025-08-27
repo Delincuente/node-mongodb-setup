@@ -1,3 +1,15 @@
+import User from "../models/User.model.js";
+
+export async function createUser(req, res, next) {
+    try {
+        const { name, email } = req.body;
+        const user = await User.create({ name, email });
+        res.status(201).json(user);
+    } catch (error) {
+        next(error);
+    }
+}
+
 function userController(req, res) {
     console.log('inputs:', req.body);
     res.send("Welcome user...");
